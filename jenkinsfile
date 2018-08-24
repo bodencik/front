@@ -4,7 +4,8 @@ pipeline {
   stages {
     stage('Cloning Git') {
      steps {
-        git 'https://github.com/bodencik/front.git'
+       // git 'https://github.com/bodencik/front.git'
+       echo 'clonando git'
       }
     }
     stage('build') {
