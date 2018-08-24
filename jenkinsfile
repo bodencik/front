@@ -19,9 +19,13 @@ pipeline {
        steps {
         echo 'Stopping old process to run new process...'
         sh '''
-        npm run pm2-stop
-        npm run pm2-start
-        '''
+	ssh 10.0.1.32 <<EOF       
+         cd /git-menu/movie-analyst-ui 
+         git pull      
+         npm install --production      
+         pm2 restart all
+         EOF
+          '''
 	}
      }	
 	
