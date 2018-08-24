@@ -2,11 +2,24 @@ pipeline {
   agent any
   tools {nodejs "node"}
   stages {
+
+  stage('PM2 Install') {
+        echo 'Installing PM2 to run application as daemon...'
+        sh "npm install pm2 -g"
+       }
    stage('build') {
       steps {
         sh 'npm -v'
         sh 'npm install'
       }
     }
+    stage('Run Application') {
+        echo 'Stopping old process to run new process...'
+        sh '''
+        npm run pm2-stop
+        npm run pm2-start
+        '''
+     }	
+	
   }
 }  
