@@ -19,7 +19,7 @@ pipeline {
        steps {
         echo 'Stopping old process to run new process...'
         sh '''
-	./deploy.sh         
+	npm run deploy.sh         
           '''
 	}
      }	
