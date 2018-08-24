@@ -4,7 +4,7 @@ pipeline {
   stages {
    stage('build') {
       steps {
-        sh 'git status'
+        sh
         sh 'npm -v'
         sh 'npm install'
       }
