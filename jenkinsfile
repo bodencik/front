@@ -18,8 +18,10 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
-        sh './deploy'         
-          
+        sh 'ssh 10.0.1.32'
+	sh 'git pull'
+	sh 'pm2 restart all'
+	sh 'exit'          
 	}
      }	
 	
