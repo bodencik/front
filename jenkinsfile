@@ -18,7 +18,7 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
-        sh './deploy.sh'         
+        sh './deploy'         
           
 	}
      }	
