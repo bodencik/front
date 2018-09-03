@@ -1,4 +1,4 @@
 #!/bin/bash
-ssh -tt ec2-user@54.87.193.224 <<EOF       
+ssh -tt ec2-user@10.0.1.32 <<EOF       
  npm install
 EOF
