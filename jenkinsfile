@@ -18,9 +18,9 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
-        sshagent (credentials: ['ec2-user (keys of front inst)']) {
+        
 		sh 'ssh-add -l hmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
-    	}
+    	
 
         
 
