@@ -19,8 +19,10 @@ pipeline {
        steps {
         echo 'Stopping old process to run new process...'
         
-		sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
-    	
+		//sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
+    		sshagent (credentials: ['deploy-dev']) {
+    sh 'ssh -o StrictHostKeyChecking=no 10.0.1.32'
+  }
 
         
 
