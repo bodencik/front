@@ -18,7 +18,8 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
-	sh 'ls -l deploy.sh'
+	sh 'chmod -x deploy.sh;ls -l deploy.sh'
+
 
 
 	sh 'exit'          
