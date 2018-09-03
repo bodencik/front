@@ -19,7 +19,7 @@ pipeline {
        steps {
         echo 'Stopping old process to run new process...'
         
-		sh 'ssh-add -l; chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
+		sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
     	
 
         
