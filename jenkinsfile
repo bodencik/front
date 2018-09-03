@@ -18,10 +18,11 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
-	 sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']){
-	sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh'
-        }
+        sshagent (credentials: ['ec2-user (keys of front inst)']) {
+		sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
+    	}
 
+        
 
 	sh 'exit'          
 	}
