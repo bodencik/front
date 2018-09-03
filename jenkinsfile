@@ -21,7 +21,7 @@ pipeline {
         
 		sh 'chmod +rwx deploy.sh;ls -l deploy.sh; ./deploy.sh' 	 
     		
-  }
+  
 
         
 
