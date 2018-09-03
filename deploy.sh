@@ -1,4 +1,4 @@
 #!/bin/bash
-ssh 10.0.1.32 <<ENDSSH       
+ssh 10.0.1.32 <<EOF       
  npm install
-ENDSSH
+EOF
