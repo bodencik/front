@@ -18,7 +18,7 @@ pipeline {
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
- 	sh 'pwd'
+ 	sh 'who'
 	sh 'ls /home/ec2-user'
 	sh 'ssh ec2-user@10.0.1.32 pwd'	 
  	sh 'exit'          
