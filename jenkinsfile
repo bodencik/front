@@ -3,36 +3,34 @@ pipeline {
   tools {nodejs "node"}
   stages {
 
-  stage('PM2 Install') {
-        steps {
-	echo 'Installing PM2 to run application as daemon...'
-        sh "npm install pm2 -g"
-	}
-       }
-   stage('build') {
-      steps {
-        sh 'npm -v'
-        sh 'npm install'
-      }
-    }
+//  stage('PM2 Install') {
+//        steps {
+//	echo 'Installing PM2 to run application as daemon...'
+ //       sh "npm install pm2 -g"
+//	}
+ //      }
+  // stage('build') {
+   //   steps {
+    //    sh 'npm -v'
+    //    sh 'npm install'
+    //  }
+   // }
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
  	sh 'who'
-	
-	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
 	sh 'tar czf nodefront.tar.gz server.js package.json public jenkinsfile .gitignore deploy.sh'
-	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~'
-	sh'rm nodefront.tar.gz'
-  	
+	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
 	
-	sh '''ssh -tt ec2-user@10.0.1.32
-	tar xf nodefront.tar.gz
-	mkdir nodefront
-	tar xf nodefront.tar.gz -C nodefront
-	cd nodefront
-	npm install
-	pm2 start nodefront
+	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~;rm nodefront.tar.gz'
+		
+	sh '''ssh -tt ec2-user@10.0.1.32;
+	tar xf nodefront.tar.gz;
+	mkdir nodefront;
+	tar xf nodefront.tar.gz -C nodefront;
+	cd nodefront;
+	npm install;
+	pm2 start nodefront;
 	exit
 	'''
 	
