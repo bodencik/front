@@ -21,7 +21,7 @@ pipeline {
  	sh 'who'
 	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
   	
-	sh 'ssh -tt ec2-user@10.0.1.32 npm -v exit'
+	sh 'ssh -tt ec2-user@10.0.1.32 npm start exit'
 	
  	
 }
