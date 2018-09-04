@@ -24,7 +24,7 @@ pipeline {
 	
 	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~;rm nodefront.tar.gz'
 		
-	sh "ssh -tt ec2-user@10.0.1.32 'pm2 stop nodefront;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront; cd nodefront; npm install; pm2 start nodefront; exit'"
+	sh "ssh -tt ec2-user@10.0.1.32 'pm2 stop nodefront;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront; pwd; npm install; pm2 start nodefront; exit'"
 		
 	
  	
