@@ -19,11 +19,15 @@ pipeline {
        steps {
         echo 'Stopping old process to run new process...'
  	sh 'who'
+	
 	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
+	sh 'tar czf nodefront.tar.gz server.js package.json public jenkinsfile .gitignore deploy.sh'
+	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~'
+	sh'rm nodefront.tar.gz'
   	
-	sh '''ssh -tt ec2-user@10.0.1.32 pm2 stop nodefront
-	rm -rf nodefront
-	tar xf ndefront.tar.gz
+	
+	sh '''ssh -tt ec2-user@10.0.1.32
+	tar xf nodefront.tar.gz
 	mkdir nodefront
 	tar xf nodefront.tar.gz -C nodefront
 	cd nodefront
