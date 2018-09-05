@@ -30,8 +30,8 @@ pipeline {
 
 
 	//sh'scp nodefront.tar.gz ec2-user@10.0.2.186:~;rm nodefront.tar.gz'
-	
-	sh "ssh -tt ec2-user@10.0.2.186 'cd nodefront;pm2 stop server.js;cd;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront;cd nodefront;pwd; npm install; pm2 start server.js; exit'"
+	 sh 'ssh -tt ec2-user@10.0.2.186'	
+	//sh "ssh -tt ec2-user@10.0.2.186 'cd nodefront;pm2 stop server.js;cd;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront;cd nodefront;pwd; npm install; pm2 start server.js; exit'"
 
 	  }
 
