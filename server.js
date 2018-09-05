@@ -12,7 +12,7 @@ app.set('views', __dirname + '/public/views/');
 // This tells Express out of which directory to serve static assets like CSS and images
 app.use(express.static(__dirname + '/public'));
 
-let backend_url = process.env.BACKEND_URL || "localhost:3000"
+let backend_url = process.env.BACKEND_URL || "10.0.3.33:3000"
 
 // The homepage route of our application does not interface with the MovieAnalyst API and is always accessible. We won’t use the getAccessToken middleware here. We’ll simply render the index.ejs view.
 app.get('/', function(req, res){
@@ -53,6 +53,7 @@ app.get('/authors', function(req, res){
 app.get('/publications', function(req, res){
   request
     .get(`http://${backend_url}/publications`)
+  .get(`http://${backend_url}/publications`)
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');
@@ -75,3 +76,4 @@ app.get('/pending', function(req, res){
 })
 
 app.listen(process.env.PORT || 3030);
+
