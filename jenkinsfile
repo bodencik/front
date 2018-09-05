@@ -15,6 +15,8 @@ pipeline {
     //    sh 'npm install'
     //  }
    // }
+
+   
     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
@@ -23,12 +25,19 @@ pipeline {
 	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
 	
 	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~;rm nodefront.tar.gz'
-		
+	
 	sh "ssh -tt ec2-user@10.0.1.32 'cd nodefront;pm2 stop server.js;cd;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront;cd nodefront;pwd; npm install; pm2 start server.js; exit'"
 		
+	  }
+
+	sshagent(['0ecf3592-ac58-4c91-812c-7d013d3f0708']) {
 	
- 	
-}
+	sh'scp nodefront.tar.gz ec2-user@10.0.2.186:~;rm nodefront.tar.gz'
+	
+	sh "ssh -tt ec2-user@10.0.1.32 'cd nodefront;pm2 stop server.js;cd;rm -rf nodefront; mkdir nodefront; tar xf nodefront.tar.gz -C nodefront;cd nodefront;pwd; npm install; pm2 start server.js; exit'"
+		
+	  }
+  
 	         
 	}
      }	
